@@ -3,20 +3,21 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Criando o esquema do banco de dados
 const schema = new Schema({    
     
-    date: {
+    dtEntry: {
         type: Date,
-        default: Date.now
-    },
-    
-    day: {
-        type: String,
         required: true,
     },
 
     entry: {
         type: String,
+        required: true,
+    },
+
+    dtExit: {
+        type: Date,
         required: true,
     },
 
@@ -26,18 +27,23 @@ const schema = new Schema({
     },
 
     daytime_hours: {
-        type: Number,
+        type: String,
         required: true,
     },
 
     night_hours: {
-        type: Number,
+        type: String,
         required: true,
     },
 
-    total: {
-        type: Number,
+    total_hours: {
+        type: String,
         required: true,
+    },
+
+    createdDate: {
+        type: Date,
+        default: Date.now
     },
 });
 

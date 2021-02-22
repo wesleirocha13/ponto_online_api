@@ -20,9 +20,12 @@ const Schedules = require('./models/schedules_model');
 const indexRoute = require('./routes/index_route');
 const schedulesRoute = require('./routes/schedules_route');
 
+// Usando o cors para conectar com o front
 app.use(cors());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Importa as rotas
 app.use('/', indexRoute);
 app.use('/schedules', schedulesRoute);
 
