@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const config = require('./config');
+//const config = require('./config');
 const cors = require('cors');
 
 const app = express();
@@ -24,6 +24,7 @@ const schedulesRoute = require('./routes/schedules_route');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.listen(process.env.PORT || 3000)
 
 // Importa as rotas
 app.use('/', indexRoute);
