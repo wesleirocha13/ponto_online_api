@@ -18,13 +18,9 @@ exports.get = async (req, res, next,) => {
 exports.post = async (req, res, next,) => {
     try{
         //String com data e hora concatenadas
-        let dtEntry = req.body.dateEntry + " " + req.body.entry;
-        dtEntry = dtEntry.replace(/-/g, "");
-        dtEntry = generateDate(dtEntry);
         
-        let dtExit = req.body.dateExit + " " + req.body.exit;
-        dtExit = dtExit.replace(/-/g, "");
-        dtExit = generateDate(dtExit);
+        let dtEntry = generateDate(req.body.dateEntry + " " + req.body.entry);
+        let dtExit = generateDate(req.body.dateExit + " " + req.body.exit);
         
         // String com data e hora (padrão) cancatenadas / Variáveis utilizadas apenas para fins de cálculo
         // início hora noturna
@@ -52,7 +48,7 @@ exports.post = async (req, res, next,) => {
             else if((dtEntry < night_hours_init  && dtEntry > night_hours_finish) && dtExit > night_hours_init2){
                 night_hours = calcHours(night_hours_init, dtExit);
             }//Entrou depois das 22 ou antes das 05 e saiu antes das 05
-            else if((dtEntry > night_hours_init || dtEntry < night_hours_finish) && dtExit < night_hours_finish){
+            else if((dtEntry > night_hours_init || dtEntry < night_hours_finish) && dtExit < night_hours_finish2){
                 night_hours = calcHours(dtEntry, dtExit);
             }// Entrou antes da 05 e saiu antes das 05 do outro dia
             else if(dtEntry < night_hours_finish && dtExit < night_hours_finish2){
@@ -69,11 +65,12 @@ exports.post = async (req, res, next,) => {
             total_hours = calcHours(dtEntry, dtExit);
             daytime_hours = total_hours - night_hours;
 
+            
             //Insere no banco de dados
             await repository.create({
-                dtEntry: dtEntry,
+                dtEntry: req.body.dateEntryAux,
                 entry: req.body.entry,
-                dtExit: dtExit,
+                dtExit: req.body.dateExitAux,
                 exit: req.body.exit,
                 daytime_hours: daytime_hours.toFixed(2),
                 night_hours: night_hours.toFixed(2),

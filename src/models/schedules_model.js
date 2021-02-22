@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 const schema = new Schema({    
     
     dtEntry: {
-        type: Date,
+        type: String,
         required: true,
     },
 
@@ -17,7 +17,7 @@ const schema = new Schema({
     },
 
     dtExit: {
-        type: Date,
+        type: String,
         required: true,
     },
 
