@@ -11,7 +11,7 @@ const router = express.Router();
 
 
 // Conecta no banco
-mongoose.connect(config.connectionString , { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://admin:admin@cluster0.gvnfs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 //Carrega models
 const Schedules = require('./models/schedules_model');
@@ -24,7 +24,7 @@ const schedulesRoute = require('./routes/schedules_route');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3333)
 
 // Importa as rotas
 app.use('/', indexRoute);
