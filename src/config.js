@@ -1,5 +1,5 @@
 module.exports = {
-    connectionString: 'mongodb://localhost:27017/ponto_online',
+    connectionString: 'mongodb+srv://admin:admin@cluster0.gvnfs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     sendgridKey: 'TBD',
     containerConnectionString: 'TDB',
 }
