@@ -41,19 +41,22 @@ exports.post = async (req, res, next,) => {
             //Entrou antes das 22 e depois das 05 e saiu antes das 05
             if((dtEntry < night_hours_init  && dtEntry > night_hours_finish) && dtExit < night_hours_finish2){
                 night_hours = calcHours(night_hours_init, dtExit);
-            }//Entrou antes das 22 e depois das 05 e saiu depois das 05 antes das 22
-            else if((dtEntry < night_hours_init  && dtEntry > night_hours_finish) && (dtExit > night_hours_finish2 && dtExit < night_hours_init2)){
+            }//Entrou antes das 22 e depois das 05 e saiu depois das 05 e antes das 22 do outro dia
+            else if((dtEntry < night_hours_init  && dtEntry > night_hours_finish) && (dtExit > night_hours_finish2 && dtExit < night_hours_init2) && req.body.dateEntry != req.body.dateExit){
                 night_hours = calcHours(night_hours_init, night_hours_finish2);
+            }//Entrou antes das 22 e depois das 05 e saiu depois das 05 e antes das 22
+            else if((dtEntry < night_hours_init  && dtEntry > night_hours_finish) && (dtExit > night_hours_finish && dtExit < night_hours_init) && req.body.dateEntry == req.body.dateExit){
+                daytime_hours = calcHours(dtEntry, dtExit);
             }//Entrou antes das 22 e depois das 05 e saiu depois das 22
             else if((dtEntry < night_hours_init  && dtEntry > night_hours_finish) && dtExit > night_hours_init2){
                 night_hours = calcHours(night_hours_init, dtExit);
-            }//Entrou depois das 22 ou antes das 05 e saiu antes das 05
-            else if((dtEntry > night_hours_init || dtEntry < night_hours_finish) && dtExit < night_hours_finish2){
-                night_hours = calcHours(dtEntry, dtExit);
             }// Entrou antes da 05 e saiu antes das 05 do outro dia
             else if(dtEntry < night_hours_finish && dtExit < night_hours_finish2){
                 night_hours = calcHours(dtEntry, night_hours_finish);
                 night_hours = night_hours + calcHours(night_hours_init, dtExit);
+            }//Entrou depois das 22 ou antes das 05 e saiu antes das 05
+            else if((dtEntry > night_hours_init || dtEntry < night_hours_finish) && dtExit < night_hours_finish2){
+                night_hours = calcHours(dtEntry, dtExit);
             }//Entrou depois das 22 ou antes das 05 e saiu depois das 05 e antes das 22
             else if((dtEntry > night_hours_init || dtEntry < night_hours_finish) && (dtExit > night_hours_finish2 && dtExit < night_hours_init2)){
                 night_hours = calcHours(dtEntry, night_hours_finish2);
