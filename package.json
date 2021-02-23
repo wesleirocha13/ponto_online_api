@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "14.5.0",
-    "npm": "6.14.5"
-  },
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "nodemon ./bin/server.js",
+    "dev": "node ./bin/server.js"
   },
   "keywords": [],
   "author": "",
