@@ -8,8 +8,8 @@
     "npm": "6.14.5"
   },
   "scripts": {
-    "dev": "nodemon ./bin/server.js",
-    "start": "node ./bin/server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
