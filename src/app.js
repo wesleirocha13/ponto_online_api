@@ -8,7 +8,7 @@ const cors = require('cors');
 
 const app = express();
 const router = express.Router();
-//teste commit
+//teste commit 2
 
 // Conecta no bancoo
 mongoose.connect('mongodb+srv://admin:admin@cluster0.gvnfs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
