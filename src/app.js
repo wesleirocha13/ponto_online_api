@@ -13,7 +13,7 @@ const router = express.Router();
 // Conecta no bancoo
 mongoose.connect('mongodb+srv://admin:admin@cluster0.gvnfs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
-//Carrega modelsss
+//Carrega modelssss
 const Schedules = require('./models/schedules_model');
 
 // Carrga as rotas
